@@ -22,8 +22,20 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(coffeeShop.maker());
     }
 
-    @Component
+    @Component(modules = DripCoffeeModule.class)
     interface CoffeeShop {
         CoffeeMaker maker();
     }
+
+    @Module
+    static class DripCoffeeModule {
+        @Provides static Heater provideHeater() {
+            return new ElectricHeater();
+        }
+
+        @Provides static Pump providePump(Thermosiphon pump) {
+            return pump;
+        }
+    }
+
 }

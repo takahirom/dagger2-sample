@@ -6,6 +6,8 @@ import javax.inject.Singleton;
 class CoffeeMaker {
     @Inject
     Heater heater;
+    @Inject
+    Pump pump;
 
     @Inject
     public CoffeeMaker() {
