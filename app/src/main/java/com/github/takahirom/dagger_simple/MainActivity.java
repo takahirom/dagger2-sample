@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Component;
@@ -31,11 +32,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Module
     static class DripCoffeeModule {
-        @Provides static Heater provideHeater() {
+        @Provides
+        @Named("water")
+        static Heater provideHeater() {
             return new ElectricHeater();
         }
 
-        @Provides static Pump providePump(Thermosiphon pump) {
+        @Provides
+        static Pump providePump(Thermosiphon pump) {
             return pump;
         }
     }
