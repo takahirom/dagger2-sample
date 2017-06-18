@@ -11,6 +11,9 @@ class CoffeeMaker {
     Heater heater;
     @Inject
     Pump pump;
+    @Inject
+    @Named("sugar")
+    boolean isAddSugar;
 
     @Inject
     public CoffeeMaker() {

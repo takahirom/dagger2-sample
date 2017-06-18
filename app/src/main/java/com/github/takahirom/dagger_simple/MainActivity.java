@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+import dagger.BindsInstance;
 import dagger.Component;
 import dagger.Module;
 import dagger.Provides;
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        coffeeShop = DaggerMainActivity_CoffeeShop.create();
+        coffeeShop = DaggerMainActivity_CoffeeShop.builder().sugar(true).build();
         System.out.println(coffeeShop.maker());
         System.out.println(coffeeShop.maker());
     }
@@ -28,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
     @Component(modules = DripCoffeeModule.class)
     interface CoffeeShop {
         CoffeeMaker maker();
+
+        @Component.Builder
+        interface Builder {
+            @BindsInstance
+            Builder sugar(@Named("sugar") boolean isAddingSugger);
+            CoffeeShop build();
+        }
     }
 
     @Module
