@@ -20,8 +20,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         coffeeShop = DaggerMainActivity_CoffeeShop.create();
         System.out.println(coffeeShop.maker());
+        System.out.println(coffeeShop.maker());
     }
 
+    @Singleton
     @Component(modules = DripCoffeeModule.class)
     interface CoffeeShop {
         CoffeeMaker maker();
